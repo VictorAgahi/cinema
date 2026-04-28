@@ -1,25 +1,29 @@
-<h1 class="p-5">Modifier un film</h1>
+<div class="form-page">
+  <div class="form-card">
+    <h1>Modifier un film</h1>
 
-<div class="d-flex flex-column gap-3 ms-5 pb-5">
-    <div class="d-flex flex-column w-50">
+    <form (ngSubmit)="updateMovie()" class="d-flex flex-column gap-4">
+      <div class="field">
         <label for="title">Titre</label>
         <input type="text" id="title" name="title" [(ngModel)]="movie.title" class="form-control" />
-    </div>
+      </div>
 
-    <div class="d-flex flex-column w-50">
+      <div class="field">
         <label for="director">Réalisateur</label>
         <input type="text" id="director" name="director" [(ngModel)]="movie.director" class="form-control" />
-    </div>
+      </div>
 
-    <div class="d-flex flex-column w-50">
+      <div class="field">
         <label for="releaseDate">Date de sortie</label>
         <input type="date" id="releaseDate" name="releaseDate" [(ngModel)]="movie.releaseDate" class="form-control" />
-    </div>
+      </div>
 
-    <div class="d-flex flex-column w-50">
+      <div class="field">
         <label for="synopsis">Synopsis</label>
         <textarea id="synopsis" name="synopsis" [(ngModel)]="movie.synopsis" class="form-control"></textarea>
-    </div>
+      </div>
 
-    <button class="btn btn-warning w-25" (click)="updateMovie()">Modifier</button>
+      <button type="submit" class="btn btn-warning">Modifier</button>
+    </form>
+  </div>
 </div>

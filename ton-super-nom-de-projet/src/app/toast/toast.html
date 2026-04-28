@@ -1,0 +1,10 @@
+<div class="toast-wrapper">
+  @for (toast of toastService.toasts(); track toast.id) {
+    <div class="toast-item" [class]="toast.type" (click)="toastService.remove(toast.id)">
+      @if (toast.type === 'success') { <i class="bi bi-check-circle-fill"></i> }
+      @if (toast.type === 'error')   { <i class="bi bi-x-circle-fill"></i> }
+      @if (toast.type === 'info')    { <i class="bi bi-info-circle-fill"></i> }
+      <span>{{ toast.message }}</span>
+    </div>
+  }
+</div>

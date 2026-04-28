@@ -1,9 +1,10 @@
 import { Component, OnInit, inject, DestroyRef } from '@angular/core';
-import { MoviesApi } from '../services/movies-api';
-import { Movie } from '../models/movie';
-import { DatePipe } from '@angular/common'
+import { DatePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { MoviesApi } from '../services/movies-api';
+import { ToastService } from '../services/toast.service';
+import { Movie } from '../models/movie';
 
 @Component({
   selector: 'app-movies-list',
@@ -12,9 +13,10 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   styleUrl: './movies-list.scss',
 })
 export class MoviesList implements OnInit {
-  private readonly moviesApi = inject(MoviesApi)
-  private readonly destroyRef = inject(DestroyRef)
-  
+  private readonly moviesApi  = inject(MoviesApi);
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly toast      = inject(ToastService);
+
   movies: Movie[] = [];
 
   ngOnInit(): void {
@@ -23,8 +25,12 @@ export class MoviesList implements OnInit {
 
   deleteMovie(id: number | undefined): void {
     if (id === undefined) return;
-    this.moviesApi.deleteMovie(id).pipe(takeUntilDestroyed(this.destroyRef)).subscribe(() => 
-        this.movies = this.movies.filter(film => film.id !== id)
-    );
+    this.moviesApi.deleteMovie(id).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
+      next: () => {
+        this.movies = this.movies.filter(film => film.id !== id);
+        this.toast.success('Film supprimé');
+      },
+      error: () => this.toast.error('Erreur lors de la suppression'),
+    });
   }
 }
