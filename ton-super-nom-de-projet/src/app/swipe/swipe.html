@@ -1,55 +1,47 @@
 <div class="swipe-container">
-  <div class="background-blob blob-1"></div>
-  <div class="background-blob blob-2"></div>
-
   @if (currentIndex() < movies().length) {
     <div class="swipe-wrapper">
-      @for (movie of visibleMovies(); track movie.id; let last = $last) {
-        <div class="movie-card"
-             [class.top-card]="last"
-             [class.next-card]="!last"
-             [class.swipe-left]="last && swipeState() === SwipeDirection.LEFT"
-             [class.swipe-right]="last && swipeState() === SwipeDirection.RIGHT">
-          <div class="card-image-container">
-            <img [src]="'http://localhost:8080/movies/' + movie.id + '/image'" [alt]="movie.title" class="card-image">
-            <div class="card-overlay"></div>
+      <div class="movie-card"
+           [class.swipe-left]="swipeState() === SwipeDirection.LEFT"
+           [class.swipe-right]="swipeState() === SwipeDirection.RIGHT">
+        <div class="card-image-container">
+          <img [src]="'http://localhost:8080/movies/' + currentMovie()!.id + '/image'"
+               [alt]="currentMovie()!.title" class="card-image">
+          <div class="card-overlay"></div>
+        </div>
+
+        <div class="card-content">
+          <div class="header">
+            <h2 class="title">{{ currentMovie()!.title }}</h2>
+            <span class="rating">
+              <i class="bi bi-star-fill"></i>
+              {{ currentMovie()!.rate }}
+            </span>
           </div>
 
-          <div class="card-content">
-            <div class="header">
-              <h1 class="title">{{ movie.title }}</h1>
-              <span class="rating">
-                <i class="bi bi-star-fill"></i>
-                {{ movie.rate }}
-              </span>
-            </div>
+          <div class="meta">
+            <span>
+              <i class="bi bi-person-fill"></i>
+              {{ currentMovie()!.director }}
+            </span>
+            <span>
+              <i class="bi bi-calendar-event"></i>
+              {{ currentMovie()!.releaseDate | date:'dd/MM/yyyy' }}
+            </span>
+          </div>
 
-            <div class="meta">
-              <span class="director">
-                <i class="bi bi-person-fill"></i>
-                {{ movie.director }}
-              </span>
-              <span class="date">
-                <i class="bi bi-calendar-event"></i>
-                {{ movie.releaseDate | date:'dd/MM/yyyy' }}
-              </span>
-            </div>
+          <p class="synopsis">{{ currentMovie()!.synopsis }}</p>
 
-            <p class="synopsis">{{ movie.synopsis }}</p>
-
-            @if (last) {
-              <div class="actions">
-                <button class="btn-action dislike" (click)="dislike()">
-                  <i class="bi bi-x-lg"></i>
-                </button>
-                <button class="btn-action like" (click)="like()">
-                  <i class="bi bi-heart-fill"></i>
-                </button>
-              </div>
-            }
+          <div class="actions">
+            <button class="btn-action dislike" (click)="dislike()">
+              <i class="bi bi-x-lg"></i>
+            </button>
+            <button class="btn-action like" (click)="like()">
+              <i class="bi bi-heart-fill"></i>
+            </button>
           </div>
         </div>
-      }
+      </div>
     </div>
   } @else {
     <div class="end-message">

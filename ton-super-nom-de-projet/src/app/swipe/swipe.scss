@@ -8,24 +8,21 @@
 
 .swipe-wrapper {
   width: 100%;
-  max-width: 450px;
-  perspective: 1000px;
+  max-width: 420px;
 }
 
 .movie-card {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-radius: 32px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-  transition: transform 0.3s ease;
+  box-shadow: var(--shadow);
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.45s ease;
 }
 
 .card-image-container {
   position: relative;
-  height: 240px;
+  height: 260px;
   width: 100%;
 }
 
@@ -46,17 +43,17 @@
 
 .card-content {
   padding: 1.25rem 1.5rem 1.5rem;
-  color: var(--text);
 }
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 8px;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
 
   .title {
-    font-size: 1.25rem;
+    font-size: 1.2rem;
     font-weight: 700;
     margin: 0;
     letter-spacing: -0.02em;
@@ -74,13 +71,14 @@
     font-weight: 600;
     font-size: 0.85rem;
     white-space: nowrap;
+    flex-shrink: 0;
   }
 }
 
 .meta {
   display: flex;
   gap: 16px;
-  margin-bottom: 12px;
+  margin-bottom: 0.75rem;
   font-size: 0.8rem;
   color: var(--muted);
 
@@ -94,10 +92,11 @@
 .synopsis {
   font-size: 0.875rem;
   line-height: 1.6;
-  color: var(--table-text);
+  color: var(--muted);
   margin-bottom: 1.25rem;
   display: -webkit-box;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -163,15 +162,8 @@
     margin: 0 auto 20px;
   }
 
-  h2 {
-    font-weight: 700;
-    margin-bottom: 12px;
-  }
-
-  p {
-    color: #94a3b8;
-    margin-bottom: 32px;
-  }
+  h2 { font-weight: 700; margin-bottom: 8px; }
+  p  { color: var(--muted); margin-bottom: 1.5rem; }
 
   .btn-restart {
     background: var(--accent);
@@ -192,16 +184,16 @@
 
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(16px); }
-  to { opacity: 1; transform: translateY(0); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes swipeLeft {
-  to { transform: translateX(-200%) rotate(-30deg); opacity: 0; }
+  to { transform: translateX(-150%) rotate(-20deg); opacity: 0; }
 }
 
 @keyframes swipeRight {
-  to { transform: translateX(200%) rotate(30deg); opacity: 0; }
+  to { transform: translateX(150%) rotate(20deg); opacity: 0; }
 }
 
-.swipe-left  { animation: swipeLeft  0.5s ease-out forwards !important; }
-.swipe-right { animation: swipeRight 0.5s ease-out forwards !important; }
+.swipe-left  { animation: swipeLeft  0.45s ease-out forwards; }
+.swipe-right { animation: swipeRight 0.45s ease-out forwards; }
