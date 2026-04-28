@@ -1,45 +1,56 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 py-3">
   <a class="navbar-brand fw-bold fs-4" routerLink="/">{{ title | titlecase }}</a>
-  
+
   <div class="collapse navbar-collapse justify-content-between">
     <div class="navbar-nav">
       <a class="nav-item nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Accueil</a>
       <a class="nav-item nav-link" routerLink="/movies" routerLinkActive="active">Gestion</a>
-      <a class="nav-item nav-link" routerLink="/swipe" routerLinkActive="active">Swipe 🔥</a>
+      <a class="nav-item nav-link" routerLink="/swipe" routerLinkActive="active">Swipe</a>
     </div>
 
     <div class="navbar-nav align-items-center">
       <div class="cart-wrapper">
-        <div class="cart-container" (click)="toggleCart()">
+        <div class="cart-container" (click)="toggleCart()" [class.active]="isCartOpen()">
           <i class="bi bi-bag-heart-fill fs-4 text-danger"></i>
-          <span class="cart-badge" *ngIf="cartService.count > 0">
-            {{ cartService.count }}
-          </span>
+          @if (cartService.count() > 0) {
+            <span class="cart-badge">
+              {{ cartService.count() }}
+            </span>
+          }
         </div>
 
-        <div class="cart-dropdown" *ngIf="isCartOpen()">
-          <div class="cart-header">
-            <h3>Mon Panier</h3>
-            <button class="btn-clear" (click)="cartService.clearCart()">Vider</button>
-          </div>
-          
-          <div class="cart-items" *ngIf="cartService.count > 0; else emptyCart">
-            <div class="cart-item" *ngFor="let item of cartService.items()">
-              <img [src]="'http://localhost:8080/movies/' + item.id + '/image'" alt="">
-              <div class="item-info">
-                <span class="item-title">{{ item.title }}</span>
-                <span class="item-director">{{ item.director }}</span>
+        @if (isCartOpen()) {
+          <div class="cart-dropdown">
+            <div class="cart-header">
+              <h3>Mon Panier</h3>
+              @if (cartService.count() > 0) {
+                <button class="btn-clear" (click)="cartService.clearCart()">Vider</button>
+              }
+            </div>
+
+            @if (cartService.count() > 0) {
+              <div class="cart-items">
+                @for (item of cartService.items(); track item.id) {
+                  <div class="cart-item">
+                    <img [src]="'http://localhost:8080/movies/' + item.id + '/image'" alt="">
+                    <div class="item-info">
+                      <span class="item-title">{{ item.title }}</span>
+                      <span class="item-director">{{ item.director }}</span>
+                    </div>
+                    <button class="btn-remove" (click)="cartService.removeFromCart(item.id!)">
+                      <i class="bi bi-trash"></i>
+                    </button>
+                  </div>
+                }
               </div>
-            </div>
+            } @else {
+              <div class="empty-state">
+                <i class="bi bi-heartbreak fs-1"></i>
+                <p>Votre panier est vide</p>
+              </div>
+            }
           </div>
-
-          <ng-template #emptyCart>
-            <div class="empty-state">
-              <i class="bi bi-heartbreak"></i>
-              <p>Votre panier est vide</p>
-            </div>
-          </ng-template>
-        </div>
+        }
       </div>
     </div>
   </div>

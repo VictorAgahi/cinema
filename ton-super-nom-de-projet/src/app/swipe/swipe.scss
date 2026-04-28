@@ -35,10 +35,16 @@
   z-index: 1;
   width: 100%;
   max-width: 450px;
+  height: 680px;
   perspective: 1000px;
+  position: relative;
 }
 
 .movie-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
@@ -46,7 +52,21 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   overflow: hidden;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-  transition: transform 0.3s ease;
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.6s ease;
+  will-change: transform, opacity;
+
+  &.next-card {
+    transform: scale(0.92) translateY(40px);
+    opacity: 0.6;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  &.top-card {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+    z-index: 2;
+  }
 }
 
 .card-image-container {
@@ -222,4 +242,26 @@
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes swipeLeft {
+  to {
+    transform: translateX(-200%) rotate(-30deg);
+    opacity: 0;
+  }
+}
+
+@keyframes swipeRight {
+  to {
+    transform: translateX(200%) rotate(30deg);
+    opacity: 0;
+  }
+}
+
+.swipe-left {
+  animation: swipeLeft 0.5s ease-out forwards !important;
+}
+
+.swipe-right {
+  animation: swipeRight 0.5s ease-out forwards !important;
 }
