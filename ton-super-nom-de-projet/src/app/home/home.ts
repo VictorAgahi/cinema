@@ -14,5 +14,4 @@ import { MovieCard } from './movie-card/movie-card';
 export class Home {
   private readonly moviesApi = inject(MoviesApi)
   movies$: Observable<Movie[]> = this.moviesApi.getMovies()
-
 }

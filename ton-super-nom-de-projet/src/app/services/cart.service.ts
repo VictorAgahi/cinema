@@ -1,4 +1,4 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, signal, computed } from '@angular/core';
 import { Movie } from '../models/movie';
 
 @Injectable({
@@ -8,6 +8,7 @@ export class CartService {
   private cartItems = signal<Movie[]>([]);
 
   readonly items = this.cartItems.asReadonly();
+  readonly count = computed(() => this.cartItems().length);
 
   addToCart(movie: Movie) {
     this.cartItems.update((items) => [...items, movie]);
@@ -19,9 +20,5 @@ export class CartService {
 
   clearCart() {
     this.cartItems.set([]);
-  }
-
-  get count() {
-    return this.cartItems().length;
   }
 }
