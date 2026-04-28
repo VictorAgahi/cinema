@@ -18,6 +18,12 @@ export class Statistics implements AfterViewInit {
   chart: any;
 
   ngAfterViewInit() {
+    const style = getComputedStyle(document.documentElement);
+    const accentColor = style.getPropertyValue('--accent').trim() || '#3b82f6';
+    const textColor = style.getPropertyValue('--text').trim() || '#f1f5f9';
+    const mutedColor = style.getPropertyValue('--muted').trim() || '#64748b';
+    const borderColor = style.getPropertyValue('--border').trim() || 'rgba(255, 255, 255, 0.1)';
+
     this.moviesApi.getMovies().subscribe((movies) => {
       const sortedMovies = [...movies].sort((a, b) => (b.rate || 0) - (a.rate || 0));
       
@@ -31,9 +37,10 @@ export class Statistics implements AfterViewInit {
           datasets: [{
             label: 'Movie Ratings',
             data: data,
-            backgroundColor: 'rgba(54, 162, 235, 0.5)',
-            borderColor: 'rgba(54, 162, 235, 1)',
-            borderWidth: 1
+            backgroundColor: accentColor + '80', // 50% opacity
+            borderColor: accentColor,
+            borderWidth: 1,
+            borderRadius: 4
           }]
         },
         options: {
@@ -42,13 +49,37 @@ export class Statistics implements AfterViewInit {
           scales: {
             y: {
               beginAtZero: true,
-              max: 5
+              max: 5,
+              grid: {
+                color: borderColor
+              },
+              ticks: {
+                color: mutedColor
+              }
+            },
+            x: {
+              grid: {
+                display: false
+              },
+              ticks: {
+                color: mutedColor
+              }
             }
           },
           plugins: {
+            legend: {
+              labels: {
+                color: textColor
+              }
+            },
             title: {
               display: true,
-              text: 'Movies by Rating'
+              text: 'Movies by Rating',
+              color: textColor,
+              font: {
+                size: 16,
+                weight: 'bold'
+              }
             }
           }
         }

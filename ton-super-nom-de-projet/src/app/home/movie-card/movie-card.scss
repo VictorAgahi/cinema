@@ -10,7 +10,8 @@
 
     .card-img-top {
       height: 260px;
-      object-fit: cover;
+      object-fit: contain;
+      background-color: var(--surface2);
     }
 
     .card-body {
