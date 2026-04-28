@@ -1,5 +1,57 @@
-<nav class="navbar navbar-light navbar-expand bg-light ps-5">
-  <a class="navbar-brand">{{ title | titlecase }}</a>
-  <a class="nav-item nav-link" routerLink="/">Accueil</a>
-  <a class="nav-item nav-link ms-3" routerLink="/movies">Gestion de films</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 py-3">
+  <a class="navbar-brand fw-bold fs-4" routerLink="/">{{ title | titlecase }}</a>
+
+  <div class="collapse navbar-collapse justify-content-between">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Accueil</a>
+      <a class="nav-item nav-link" routerLink="/movies" routerLinkActive="active">Gestion</a>
+      <a class="nav-item nav-link" routerLink="/swipe" routerLinkActive="active">Swipe</a>
+    </div>
+
+    <div class="navbar-nav align-items-center">
+      <div class="cart-wrapper">
+        <div class="cart-container" (click)="toggleCart()" [class.active]="isCartOpen()">
+          <i class="bi bi-bag-heart-fill fs-4 text-danger"></i>
+          @if (cartService.count() > 0) {
+            <span class="cart-badge">
+              {{ cartService.count() }}
+            </span>
+          }
+        </div>
+
+        @if (isCartOpen()) {
+          <div class="cart-dropdown">
+            <div class="cart-header">
+              <h3>Mon Panier</h3>
+              @if (cartService.count() > 0) {
+                <button class="btn-clear" (click)="cartService.clearCart()">Vider</button>
+              }
+            </div>
+
+            @if (cartService.count() > 0) {
+              <div class="cart-items">
+                @for (item of cartService.items(); track item.id) {
+                  <div class="cart-item">
+                    <img [src]="'http://localhost:8080/movies/' + item.id + '/image'" alt="">
+                    <div class="item-info">
+                      <span class="item-title">{{ item.title }}</span>
+                      <span class="item-director">{{ item.director }}</span>
+                    </div>
+                    <button class="btn-remove" (click)="cartService.removeFromCart(item.id!)">
+                      <i class="bi bi-trash"></i>
+                    </button>
+                  </div>
+                }
+              </div>
+            } @else {
+              <div class="empty-state">
+                <i class="bi bi-heartbreak fs-1"></i>
+                <p>Votre panier est vide</p>
+              </div>
+            }
+          </div>
+        }
+      </div>
+    </div>
+  </div>
 </nav>
