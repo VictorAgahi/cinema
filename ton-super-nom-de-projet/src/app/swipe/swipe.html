@@ -1,0 +1,56 @@
+<div class="swipe-container">
+  <div class="background-blob blob-1"></div>
+  <div class="background-blob blob-2"></div>
+
+  <div class="swipe-wrapper" *ngIf="currentIndex() < movies().length; else endOfList">
+    <div class="movie-card" [@swipe]="swipeState()">
+      <div class="card-image-container">
+        <img [src]="currentMovieImageUrl" [alt]="currentMovie.title" class="card-image">
+        <div class="card-overlay"></div>
+      </div>
+
+      <div class="card-content">
+        <div class="header">
+          <h1 class="title">{{ currentMovie.title }}</h1>
+          <span class="rating">
+            <i class="bi bi-star-fill"></i>
+            {{ currentMovie.rate }}
+          </span>
+        </div>
+
+        <div class="meta">
+          <span class="director">
+            <i class="bi bi-person-fill"></i>
+            {{ currentMovie.director }}
+          </span>
+          <span class="date">
+            <i class="bi bi-calendar-event"></i>
+            {{ currentMovie.releaseDate | date:'dd/MM/yyyy' }}
+          </span>
+        </div>
+
+        <p class="synopsis">{{ currentMovie.synopsis }}</p>
+
+        <div class="actions">
+          <button class="btn-action dislike" (click)="dislike()">
+            <i class="bi bi-x-lg"></i>
+          </button>
+          <button class="btn-action like" (click)="like()">
+            <i class="bi bi-heart-fill"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #endOfList>
+    <div class="end-message">
+      <div class="icon-box">
+        <i class="bi bi-check2-circle"></i>
+      </div>
+      <h2>Plus de films à swiper !</h2>
+      <p>Revenez plus tard pour de nouvelles découvertes.</p>
+      <button class="btn-restart" (click)="restart()">Recommencer</button>
+    </div>
+  </ng-template>
+</div>

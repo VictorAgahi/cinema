@@ -1,0 +1,225 @@
+.swipe-container {
+  height: calc(100vh - 56px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background: #0f172a;
+  position: relative;
+  padding: 20px;
+}
+
+.background-blob {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  filter: blur(80px);
+  border-radius: 50%;
+  z-index: 0;
+  opacity: 0.4;
+}
+
+.blob-1 {
+  background: #3b82f6;
+  top: -100px;
+  left: -100px;
+}
+
+.blob-2 {
+  background: #ec4899;
+  bottom: -100px;
+  right: -100px;
+}
+
+.swipe-wrapper {
+  z-index: 1;
+  width: 100%;
+  max-width: 450px;
+  perspective: 1000px;
+}
+
+.movie-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease;
+}
+
+.card-image-container {
+  position: relative;
+  height: 400px;
+  width: 100%;
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 150px;
+  background: linear-gradient(to top, rgba(15, 23, 42, 1), transparent);
+}
+
+.card-content {
+  padding: 24px;
+  color: #f8fafc;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+
+  .title {
+    font-size: 2rem;
+    font-weight: 800;
+    margin: 0;
+    letter-spacing: -0.025em;
+    background: linear-gradient(to right, #f8fafc, #94a3b8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .rating {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(234, 179, 8, 0.2);
+    color: #facc15;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+}
+
+.meta {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+  font-size: 0.85rem;
+  color: #94a3b8;
+
+  span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+}
+
+.synopsis {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #cbd5e1;
+  margin-bottom: 32px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+}
+
+.btn-action {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+
+  &.dislike {
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+    border: 2px solid rgba(239, 68, 68, 0.2);
+
+    &:hover {
+      background: #ef4444;
+      color: white;
+      transform: scale(1.1);
+      box-shadow: 0 0 20px rgba(239, 68, 68, 0.4);
+    }
+  }
+
+  &.like {
+    background: rgba(34, 197, 94, 0.1);
+    color: #22c55e;
+    border: 2px solid rgba(34, 197, 94, 0.2);
+
+    &:hover {
+      background: #22c55e;
+      color: white;
+      transform: scale(1.1);
+      box-shadow: 0 0 20px rgba(34, 197, 94, 0.4);
+    }
+  }
+}
+
+.end-message {
+  text-align: center;
+  color: #f8fafc;
+  animation: fadeIn 0.8s ease-out;
+
+  .icon-box {
+    width: 80px;
+    height: 80px;
+    background: rgba(34, 197, 94, 0.1);
+    color: #22c55e;
+    border-radius: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    margin: 0 auto 24px;
+  }
+
+  h2 {
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  p {
+    color: #94a3b8;
+    margin-bottom: 32px;
+  }
+
+  .btn-restart {
+    background: linear-gradient(to right, #3b82f6, #2563eb);
+    color: white;
+    border: none;
+    padding: 12px 32px;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    cursor: pointer;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.4);
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
