@@ -1,23 +1,29 @@
 .navbar {
-  background: #0f172a !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  background: var(--surface) !important;
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.navbar-brand {
+  color: var(--text) !important;
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 .nav-link {
   font-weight: 500;
-  color: #94a3b8 !important;
+  color: var(--muted) !important;
   transition: all 0.2s ease;
   margin: 0 8px;
   border-radius: 8px;
 
   &:hover {
-    color: #f8fafc !important;
+    color: var(--text) !important;
     background: rgba(255, 255, 255, 0.05);
   }
 
   &.active {
-    color: #3b82f6 !important;
+    color: var(--accent) !important;
     font-weight: 600;
   }
 }
@@ -42,7 +48,7 @@
     position: absolute;
     top: -5px;
     right: -5px;
-    background: #ef4444;
+    background: var(--danger);
     color: white;
     font-size: 0.7rem;
     font-weight: 700;
@@ -53,10 +59,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 2px solid #0f172a;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    border: 2px solid var(--surface);
+    box-shadow: var(--shadow);
   }
 }
+
 .cart-wrapper {
   position: relative;
 }
@@ -68,7 +75,7 @@
   width: 320px;
   background: rgba(15, 23, 42, 0.95);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--border);
   border-radius: 20px;
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
   z-index: 1000;
@@ -77,7 +84,7 @@
 
   .cart-header {
     padding: 16px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid var(--border);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -86,13 +93,13 @@
       font-size: 1.1rem;
       font-weight: 700;
       margin: 0;
-      color: #f8fafc;
+      color: var(--text);
     }
 
     .btn-clear {
       background: transparent;
       border: 1px solid rgba(239, 68, 68, 0.3);
-      color: #ef4444;
+      color: var(--danger);
       font-size: 0.75rem;
       padding: 4px 10px;
       border-radius: 6px;
@@ -100,7 +107,7 @@
       transition: all 0.2s;
 
       &:hover {
-        background: #ef4444;
+        background: var(--danger);
         color: white;
       }
     }
@@ -136,13 +143,13 @@
 
         .item-title {
           font-weight: 600;
-          color: #f8fafc;
+          color: var(--text);
           font-size: 0.9rem;
         }
 
         .item-director {
           font-size: 0.75rem;
-          color: #94a3b8;
+          color: var(--muted);
         }
       }
 
@@ -167,7 +174,7 @@
   .empty-state {
     padding: 40px 20px;
     text-align: center;
-    color: #94a3b8;
+    color: var(--muted);
 
     i {
       font-size: 2.5rem;

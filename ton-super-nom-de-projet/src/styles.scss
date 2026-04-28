@@ -1,3 +1,93 @@
-/* You can add global styles to this file, and also import other style files */
 @import url(bootstrap);
 @import "bootstrap-icons/font/bootstrap-icons.css";
+
+:root {
+  --bg:       #080d14;
+  --surface:  #0f172a;
+  --surface2: #1a2236;
+  --border:   rgba(255, 255, 255, 0.07);
+  --text:     #f1f5f9;
+  --muted:    #64748b;
+  --accent:   #3b82f6;
+  --accent-h: #60a5fa;
+  --danger:   #ef4444;
+  --success:  #22c55e;
+  --pink:     #ec4899;
+  --shadow:   0 4px 24px rgba(0, 0, 0, 0.5);
+  --note-color: #f59e0b;
+  --btn-padding: 0.45rem 0.9rem;
+  --card-min-height: 36rem;
+  --margin: 0.5rem;
+  --table-text: #cbd5e1;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+h1, h2, h3 {
+  color: var(--text);
+  font-weight: 600;
+}
+
+label {
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.btn-warning {
+  background-color: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  font-weight: 500;
+
+  &:hover, &:focus {
+    background-color: var(--accent-h);
+    border-color: var(--accent-h);
+    color: #fff;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+  }
+}
+
+.btn-danger {
+  background-color: transparent;
+  border-color: var(--danger);
+  color: var(--danger);
+
+  &:hover, &:focus {
+    background-color: var(--danger);
+    border-color: var(--danger);
+    color: #fff;
+  }
+}
+
+.form-control, .form-select {
+  background-color: var(--surface2);
+  border-color: var(--border);
+  color: var(--text);
+
+  &:focus {
+    background-color: var(--surface2);
+    border-color: var(--accent);
+    color: var(--text);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+  }
+}
+
+.card {
+  background-color: var(--surface);
+  border-color: var(--border);
+  color: var(--text);
+  box-shadow: var(--shadow);
+}
+
+.table {
+  --bs-table-bg: var(--surface);
+  --bs-table-striped-bg: var(--surface2);
+  --bs-table-border-color: var(--border);
+  --bs-table-color: var(--text);
+}

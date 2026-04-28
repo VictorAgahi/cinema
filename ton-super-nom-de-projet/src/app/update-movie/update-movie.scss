@@ -1,0 +1,45 @@
+:host {
+  display: block;
+}
+
+.form-page {
+  display: flex;
+  justify-content: center;
+  padding: 3rem 1rem;
+}
+
+.form-card {
+  width: 100%;
+  max-width: 560px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2rem 2.5rem;
+
+  h1 {
+    font-size: 1.4rem;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.75rem;
+  }
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-control {
+  border-radius: 10px;
+  padding: 0.65rem 0.9rem;
+}
+
+textarea.form-control {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.btn {
+  align-self: flex-start;
+  padding: 0.55rem 1.75rem;
+}

@@ -1,3 +1,57 @@
 :host {
   display: block;
+
+  h1 {
+    font-size: 1.5rem;
+    letter-spacing: -0.02em;
+  }
+
+  .table {
+    thead th {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      border-bottom: 1px solid var(--border);
+    }
+
+    td, th[scope="row"] {
+      vertical-align: middle;
+      border-color: var(--border);
+    }
+  }
+
+  .table {
+    background: transparent;
+    border-collapse: separate;
+    border-spacing: 0 var(--margin);
+
+    tbody tr {
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      border: 1px solid transparent;
+    }
+
+    td, th {
+      padding: 0.6rem 0.75rem;
+      vertical-align: middle;
+      color: var(--table-text);
+    }
+
+    /* garantir que l'ensemble du tableau utilise la couleur de texte du thème */
+    &, th, td {
+      color: var(--table-text);
+    }
+  }
+
+  :host .btn {
+    padding: var(--btn-padding);
+    border-radius: 0.375rem;
+  }
+
+  .note {
+    color: var(--note-color);
+    font-weight: 700;
+  }
 }

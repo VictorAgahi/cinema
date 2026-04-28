@@ -1,5 +1,5 @@
 <div class="d-flex align-items-center">
-  <h1 class="p-5">Gestion de films</h1>
+  <h1 class="p-3 me-3">Gestion de films</h1>
   <button class="btn btn-warning" routerLink="/add-movie">Nouveau film</button>
 </div>
 
@@ -22,15 +22,17 @@
       <td>{{ movie.title }}</td>
       <td>{{ movie.releaseDate | date: 'dd/MM/yy' }}</td>
       <td>{{ movie.director }}</td>
-      <td>{{ movie.rate }}</td>
+      <td class="note">{{ movie.rate }}</td>
       <td>{{ movie.synopsis }}</td>
       <td>
-        <button type="button" class="btn btn-warning me-2" [routerLink]="['/update-movie', movie.id]">
-          <i class="bi bi-pencil-fill"></i>
-        </button>
-        <button type="button" class="btn btn-danger" (click)="deleteMovie(movie.id)">
-          <i class="bi bi-trash-fill"></i>
-        </button>
+        <div class="d-flex gap-2">
+          <button type="button" class="btn btn-warning" [routerLink]="['/update-movie', movie.id]">
+            <i class="bi bi-pencil-fill"></i>
+          </button>
+          <button type="button" class="btn btn-danger" (click)="deleteMovie(movie.id)">
+            <i class="bi bi-trash-fill"></i>
+          </button>
+        </div>
       </td>
     </tr>
     }

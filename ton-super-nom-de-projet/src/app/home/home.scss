@@ -1,5 +1,33 @@
 :host {
+  display: block;
+  padding: 1rem 2rem;
+}
+
+.home-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 2rem;
+  padding: 0 1rem;
+
+  .sort-container {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+
+    label {
+      margin-bottom: 0;
+      white-space: nowrap;
+    }
+
+    .form-select {
+      width: 200px;
+    }
+  }
+}
+
+.movies-grid {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  gap: 2rem;
 }

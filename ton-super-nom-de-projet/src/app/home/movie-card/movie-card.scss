@@ -1,0 +1,53 @@
+:host {
+  .card {
+    width: 18rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(59, 130, 246, 0.12);
+    }
+
+    .card-img-top {
+      height: 260px;
+      object-fit: contain;
+      background-color: var(--surface2);
+    }
+
+    .card-body {
+      display: flex;
+      flex-direction: column;
+      min-height: 14rem;
+    }
+
+    .card-title {
+      font-weight: 600;
+      font-size: 1rem;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+
+    .card-text {
+      color: var(--muted);
+      font-size: 0.875rem;
+      line-height: 1.6;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      line-clamp: 4;
+      -webkit-box-orient: vertical;
+      flex: 1;
+    }
+
+    .note {
+      color: var(--note-color);
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-top: 0.75rem;
+      margin-bottom: 0;
+    }
+  }
+}

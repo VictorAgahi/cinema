@@ -1,8 +1,9 @@
 import { Component, OnInit, inject } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MoviesApi } from '../services/movies-api';
+import { ToastService } from '../services/toast.service';
 import { Movie } from '../models/movie';
-import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-update-movie',
@@ -11,9 +12,10 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './update-movie.scss',
 })
 export class UpdateMovie implements OnInit {
-  private readonly route = inject(ActivatedRoute);
-  private readonly router = inject(Router);
+  private readonly route     = inject(ActivatedRoute);
+  private readonly router    = inject(Router);
   private readonly moviesApi = inject(MoviesApi);
+  private readonly toast     = inject(ToastService);
 
   movie: Movie = {
     title: '',
@@ -22,7 +24,7 @@ export class UpdateMovie implements OnInit {
     synopsis: '',
     id: undefined,
     rate: undefined,
-    image: undefined
+    image: undefined,
   };
 
   ngOnInit(): void {
@@ -38,8 +40,12 @@ export class UpdateMovie implements OnInit {
   }
 
   updateMovie(): void {
-    this.moviesApi.updateMovie(this.movie).subscribe(() => {
-      this.router.navigate(['/movies']);
+    this.moviesApi.updateMovie(this.movie).subscribe({
+      next: () => {
+        this.toast.success('Film modifié avec succès');
+        this.router.navigate(['/movies']);
+      },
+      error: () => this.toast.error('Erreur lors de la modification du film'),
     });
   }
 }
