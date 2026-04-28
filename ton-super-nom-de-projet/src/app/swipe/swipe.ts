@@ -36,7 +36,7 @@ export class SwipeComponent implements OnInit {
   visibleMovies = computed(() => {
     const idx = this.currentIndex();
     const all = this.movies();
-    const result = [];
+    const result: Movie[] = [];
     if (idx + 1 < all.length) result.push(all[idx + 1]);
     if (idx < all.length) result.push(all[idx]);
     return result;
@@ -46,21 +46,19 @@ export class SwipeComponent implements OnInit {
     if (this.swipeState()) return;
     this.swipeState.set(SwipeDirection.RIGHT);
     const movie = this.currentMovie();
-    if (movie) {
-      this.cartService.addToCart(movie);
-    }
-    this.next();
+    if (movie) this.cartService.addToCart(movie);
+    setTimeout(() => this.next(), 500);
   }
 
   dislike() {
     if (this.swipeState()) return;
     this.swipeState.set(SwipeDirection.LEFT);
-    this.next();
+    setTimeout(() => this.next(), 500);
   }
 
   private next() {
     this.currentIndex.update(i => i + 1);
-    setTimeout(() => this.swipeState.set(null), 0);
+    this.swipeState.set(null);
   }
 
   restart() {

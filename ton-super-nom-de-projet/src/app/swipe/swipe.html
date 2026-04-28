@@ -5,10 +5,11 @@
   @if (currentIndex() < movies().length) {
     <div class="swipe-wrapper">
       @for (movie of visibleMovies(); track movie.id; let last = $last) {
-        <div class="movie-card" 
+        <div class="movie-card"
              [class.top-card]="last"
              [class.next-card]="!last"
-             [animate.leave]="last ? (swipeState() === SwipeDirection.LEFT ? 'swipe-left' : 'swipe-right') : ''">
+             [class.swipe-left]="last && swipeState() === SwipeDirection.LEFT"
+             [class.swipe-right]="last && swipeState() === SwipeDirection.RIGHT">
           <div class="card-image-container">
             <img [src]="'http://localhost:8080/movies/' + movie.id + '/image'" [alt]="movie.title" class="card-image">
             <div class="card-overlay"></div>

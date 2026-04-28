@@ -212,15 +212,9 @@
     margin: 0 auto 24px;
   }
 
-  h2 {
-    font-weight: 700;
-    margin-bottom: 12px;
-  }
+  h2 { font-weight: 700; margin-bottom: 12px; }
 
-  p {
-    color: #94a3b8;
-    margin-bottom: 32px;
-  }
+  p { color: #94a3b8; margin-bottom: 32px; }
 
   .btn-restart {
     background: linear-gradient(to right, #3b82f6, #2563eb);
@@ -245,23 +239,12 @@
 }
 
 @keyframes swipeLeft {
-  to {
-    transform: translateX(-200%) rotate(-30deg);
-    opacity: 0;
-  }
+  to { transform: translateX(-200%) rotate(-30deg); opacity: 0; }
 }
 
 @keyframes swipeRight {
-  to {
-    transform: translateX(200%) rotate(30deg);
-    opacity: 0;
-  }
+  to { transform: translateX(200%) rotate(30deg); opacity: 0; }
 }
 
-.swipe-left {
-  animation: swipeLeft 0.5s ease-out forwards !important;
-}
-
-.swipe-right {
-  animation: swipeRight 0.5s ease-out forwards !important;
-}
+.swipe-left  { animation: swipeLeft  0.5s ease-out forwards !important; }
+.swipe-right { animation: swipeRight 0.5s ease-out forwards !important; }
