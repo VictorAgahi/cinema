@@ -1,0 +1,38 @@
+<div class="d-flex align-items-center">
+  <h1 class="p-5">Gestion de films</h1>
+  <button class="btn btn-warning" routerLink="/add-movie">Nouveau film</button>
+</div>
+
+<table class="table table-striped mx-auto w-75">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Titre</th>
+      <th scope="col">Date de sortie</th>
+      <th scope="col">Réalisateur</th>
+      <th scope="col">Note</th>
+      <th scope="col">Synopsis</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (movie of movies; track movie.id) {
+    <tr>
+      <th scope="row">{{ movie.id }}</th>
+      <td>{{ movie.title }}</td>
+      <td>{{ movie.releaseDate | date: 'dd/MM/yy' }}</td>
+      <td>{{ movie.director }}</td>
+      <td>{{ movie.rate }}</td>
+      <td>{{ movie.synopsis }}</td>
+      <td>
+        <button type="button" class="btn btn-warning me-2" [routerLink]="['/update-movie', movie.id]">
+          <i class="bi bi-pencil-fill"></i>
+        </button>
+        <button type="button" class="btn btn-danger" (click)="deleteMovie(movie.id)">
+          <i class="bi bi-trash-fill"></i>
+        </button>
+      </td>
+    </tr>
+    }
+  </tbody>
+</table>
